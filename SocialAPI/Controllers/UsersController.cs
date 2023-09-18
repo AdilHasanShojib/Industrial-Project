@@ -6,9 +6,7 @@ using SocialAPI.TEntities;
 namespace SocialAPI.Controllers
 {
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseController
     {
         private readonly TDataContex _context;
 
