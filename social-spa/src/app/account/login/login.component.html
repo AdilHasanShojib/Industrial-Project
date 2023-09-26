@@ -1,0 +1,43 @@
+<div class="container mt-5">
+<mat-card class="example-card">
+    <mat-card-content>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
+      <form #myLoginForm="ngForm" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <mat-tab label="Login">
+          <div class="login-form">
+           <mat-form-field class="mat-form-field" appearance="outline">
+             <mat-label>Enter your user name</mat-label>
+             <input type="text" matInput formControlName="username" placeholder="MaxUserName" required>
+       
+       
+           </mat-form-field>
+           <mat-form-field class="mat-form-field" appearance="outline">
+             <mat-label>Enter your password</mat-label>
+             <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+             <mat-icon class="eye-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+           </button>
+             
+       
+           </mat-form-field>
+          </div>
+       
+         </mat-tab>
+      </form>
+ 
+  <mat-tab label="Register"></mat-tab>
+
+
+    </mat-tab-group>
+
+
+    </mat-card-content>
+    <mat-card-actions class="mat_card_action">
+        <a routerLink="/home" mat-raised-button >Cancel </a>
+        <button  *ngIf="!isRegForms" (click)="myLoginForm.ngSubmit.emit()" [disabled]="!loginForm.valid" mat-raised-button>Login</button>
+        <button *ngIf="isRegForms" mat-raised-button>Register</button>
+
+    </mat-card-actions>
+</mat-card>
+
+</div>
