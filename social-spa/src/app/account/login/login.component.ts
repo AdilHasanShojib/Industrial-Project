@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   hide=true;
   loginForm:FormGroup;
 
-  constructor(public fb:FormBuilder){
+  constructor(public fb:FormBuilder,public authService:AuthService,public router:Router){
     this.loginForm=new FormGroup({});
 
   }
@@ -42,8 +44,15 @@ export class LoginComponent implements OnInit {
 
   }
 
-onLogin(){
-
+userLogin(){
+this.authService.onLogin(this.loginForm.value).subscribe({
+  next:(response:any)=>{
+    if (response){
+      this.router.navigateByUrl('/');
+    }
+    //console.log(response);
+  }
+})
   
 }
 

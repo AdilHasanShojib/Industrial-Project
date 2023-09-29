@@ -2,7 +2,7 @@
 <mat-card class="example-card">
     <mat-card-content>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
-      <form #myLoginForm="ngForm" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <form #myLoginForm="ngForm" [formGroup]="loginForm" (ngSubmit)="userLogin()">
         <mat-tab label="Login">
           <div class="login-form">
            <mat-form-field class="mat-form-field" appearance="outline">

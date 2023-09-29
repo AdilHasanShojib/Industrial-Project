@@ -26,6 +26,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     LoggedOutMainComponent,
     LoginComponent,
     RegisterComponent,
+    
     
   ],
   imports: [
