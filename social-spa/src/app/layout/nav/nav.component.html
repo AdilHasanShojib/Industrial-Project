@@ -3,7 +3,7 @@
         <div class="menu-container"> 
             <div class="right-nav-item"> 
               <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">My App</a>
-              <ng-container *ngIf="isLoggedIn">  <ul class="right-nav-item_ul">
+              <ng-container *ngIf="authService.currentUser$ | async">  <ul class="right-nav-item_ul">
                 <li>
                     <a routerLink="/members" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Matches</a>
                 </li>
@@ -23,12 +23,12 @@
             
             </div>
             <div class="left-nav-item"> 
-                <ng-container *ngIf="!isLoggedIn" ><a mat-button routerLink="/login" >
+                <ng-container *ngIf="!(authService.currentUser$ | async)" ><a mat-button routerLink="/login" >
                     <mat-icon class="material-symbols-outlined">login</mat-icon>
                         
                 </a> </ng-container>
                 
-                 <ng-container *ngIf="isLoggedIn" >
+                 <ng-container *ngIf="authService.currentUser$ | async" >
                     <a mat-button [matMenuTriggerFor]="menu">
                         <mat-icon class="material-symbols-outlined">person</mat-icon>
                             

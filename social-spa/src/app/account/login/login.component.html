@@ -25,9 +25,150 @@
          </mat-tab>
       </form>
  
-  <mat-tab label="Register"></mat-tab>
+  <mat-tab label="Register">
+  <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+
+    <div class="login-form" >
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['username'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'MaxUserName'"
+      [label]="'Enter Your User Name'"
+      >
+
+      </app-tb-input>
+
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['firstname'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'Maxfirstname'"
+      [label]="'Enter Your first Name'"
+      >
+
+      </app-tb-input>
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['lastname'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'Maxlastname'"
+      [label]="'Enter Your Last Name'"
+      >
+
+      </app-tb-input>
 
 
+
+
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['email'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'Maxemail'"
+      [label]="'Enter Your valid email'"
+      >
+
+      </app-tb-input>
+
+      
+    
+    <app-tb-input
+    [formControl]="$any(registrationForm.controls['gender'])" 
+    [types]="'text'"   
+    [passwordType]="'p'"
+    [iconHide]="false"
+    [placeholder]="'Male or Female'"
+    [label]="'select gender'"
+    >
+
+    </app-tb-input>
+
+
+
+
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['knownAs'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'Knownas'"
+      [label]="'Enter Your cool Name'"
+      >
+
+      </app-tb-input>
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['city'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'Dhaka'"
+      [label]="'Enter Your CITY'"
+      >
+
+      </app-tb-input>
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['country'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'BD'"
+      [label]="'Enter Your Country name'"
+      >
+
+      </app-tb-input>
+
+      <app-date-picker
+        [formControl]="$any(registrationForm.controls['DOB'])" 
+        [minDate]="mindate"
+        [label]="'choose a date'"
+        >
+      </app-date-picker>
+    
+
+
+
+
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['username'])" 
+      [types]="'text'"   
+      [passwordType]="'p'"
+      [iconHide]="false"
+      [placeholder]="'MaxUserName'"
+      [label]="'Enter Your User Name'"
+      >
+
+      </app-tb-input>
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['password'])" 
+      [types]="'password'"   
+     
+      [iconHide]="true"
+      [placeholder]="'*******'"
+      [label]="'Enter Your password'"
+      >
+
+      </app-tb-input>
+
+      <app-tb-input
+      [formControl]="$any(registrationForm.controls['Confirmpassword'])" 
+      [types]="'password'"   
+     
+      [iconHide]="true"
+      [placeholder]="'*******'"
+      [label]="'Enter Your Confirm password'"
+      >
+
+      </app-tb-input>
+     
+
+     </div>
+ </form>
+  </mat-tab>
     </mat-tab-group>
 
 
