@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialAPI.TData;
 
@@ -11,9 +12,11 @@ using SocialAPI.TData;
 namespace SocialAPI.TData.Migrations
 {
     [DbContext(typeof(TDataContex))]
-    partial class TDataContexModelSnapshot : ModelSnapshot
+    [Migration("20231002062016_UserExtension")]
+    partial class UserExtension
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
