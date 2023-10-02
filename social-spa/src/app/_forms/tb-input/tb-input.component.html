@@ -10,3 +10,15 @@
 
 
   </mat-form-field>
+
+  <ng-container *ngIf="control?.touched || control?.dirty">
+    
+    <mat-error class="pb-3" *ngIf="control?.errors?.['required']">please {{label}}</mat-error>
+
+    <mat-error class="pb-3" *ngIf="control?.errors?.['minlength']">Must be {{control.errors?.['minlength'].requiredLength}} characters password length</mat-error>
+  <mat-error class="pb-3" *ngIf="control?.errors?.['maxlength']">Must be {{control.errors?.['maxlength'].requiredLength}} characters password length</mat-error>
+
+  <mat-error class="pb-3" *ngIf="control?.errors?.['notMatched']">{{label}} doesn't match</mat-error>
+
+  </ng-container>
+ 

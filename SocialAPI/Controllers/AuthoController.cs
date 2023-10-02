@@ -30,8 +30,16 @@ namespace SocialAPI.Controllers
             var user = new AppUser
             {
                 Name = registerDto.UserName,
-                passwordhash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                passwordsalt = hmac.Key
+                Firstname=registerDto.Firstname,
+                Lastname=registerDto.Lastname,
+                Email=registerDto.Email,
+                KnownAs = registerDto.KnownAs,
+                DateOfBirth=registerDto.DateOfBirth,
+                    City=registerDto.City,
+                    Gender=registerDto.Gender,
+                    Country=registerDto.Country,
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+                PasswordSalt = hmac.Key
             };
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();

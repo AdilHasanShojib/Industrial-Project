@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -44,11 +44,19 @@ export class LoginComponent implements OnInit {
       city:['',Validators.required],
       country:['',Validators.required],
       
-      password:['',Validators.required],
-      Confirmpassword:['',Validators.required]
+      password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(12)]],
+      Confirmpassword:['',[Validators.required],this.matchConfirmPassword('password')]
 
     });
+
+     this.registrationForm?.controls?.['password'].valueChanges.subscribe(()=>{
+      this.registrationForm?.controls?.['confirmPassword'].updateValueAndValidity();
+
+     });
+
+
   }
+  
 
   onTabChange(event :MatTabChangeEvent){
    if(event.tab.textLabel=== 'Login') {
@@ -75,9 +83,33 @@ this.authService.onLogin(this.loginForm.value).subscribe({
 }
 
 onRegister() {
-
+ console.log(this.registrationForm);
+ const dob = this.getDateOnly(
+   this.registrationForm.controls['DOB'].value
+ );
+ const values={...this.registrationForm.value, DOB:dob};
+ console.log(values);
 
 }
+
+private getDateOnly(dob: string | undefined){
+  if(!dob) return;
+  let theDob= new Date(dob);
+  return new Date(theDob.setMinutes(theDob.getMinutes() - theDob.getTimezoneOffset())).toISOString().slice(0,10);
+
+}
+
+
+
+private matchConfirmPassword(password:string): ValidatorFn{
+   
+  return (confirmPwd:AbstractControl) =>{
+
+   return confirmPwd.value === confirmPwd.parent?.get(password)?.value ? null:{notMatched:true}
+  }
+
+
+ }
 
 
 }

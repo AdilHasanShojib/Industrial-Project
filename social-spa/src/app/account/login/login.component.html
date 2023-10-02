@@ -26,9 +26,17 @@
       </form>
  
   <mat-tab label="Register">
-  <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+  <form #myRegisterForm="ngForm"  [formGroup]="registrationForm" (ngSubmit)="onRegister()">
 
     <div class="login-form" >
+
+      <mat-radio-group formControlName="gender" aria-label="Select an option">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+        <mat-radio-button value="others">Others</mat-radio-button>
+      </mat-radio-group>
+
+
       <app-tb-input
       [formControl]="$any(registrationForm.controls['username'])" 
       [types]="'text'"   
@@ -77,16 +85,7 @@
 
       
     
-    <app-tb-input
-    [formControl]="$any(registrationForm.controls['gender'])" 
-    [types]="'text'"   
-    [passwordType]="'p'"
-    [iconHide]="false"
-    [placeholder]="'Male or Female'"
-    [label]="'select gender'"
-    >
-
-    </app-tb-input>
+    
 
 
 
@@ -176,7 +175,7 @@
     <mat-card-actions class="mat_card_action">
         <a routerLink="/home" mat-raised-button >Cancel </a>
         <button  *ngIf="!isRegForms" (click)="myLoginForm.ngSubmit.emit()" [disabled]="!loginForm.valid" mat-raised-button>Login</button>
-        <button *ngIf="isRegForms" mat-raised-button>Register</button>
+        <button *ngIf="isRegForms" (click)="myRegisterForm.ngSubmit.emit()" [disabled]="!registrationForm.valid" mat-raised-button >Register</button>
 
     </mat-card-actions>
 </mat-card>
