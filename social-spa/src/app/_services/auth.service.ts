@@ -27,6 +27,25 @@ export class AuthService {
     )
 
   }
+  
+  onRegister(model : any){
+
+    return this.http.post<any>(`${this.baseUrl}auth/register`,model).pipe(
+       map((response:any)=>{
+            const user = response;
+            if(user){
+         this.setCurrentUser(user);
+            }
+            return user;
+       })
+     )
+ 
+   }
+
+
+
+
+
   setCurrentUser(user: any) {
     localStorage.setItem('currentUser',JSON.stringify(user));
     this.currentUserSource.next(user);
