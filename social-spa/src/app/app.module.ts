@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -27,6 +27,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TbInputComponent } from './_forms/tb-input/tb-input.component';
 import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 
 
@@ -43,6 +52,13 @@ import {MatNativeDateModule} from '@angular/material/core';
     RegisterComponent,
     TbInputComponent,
     DatePickerComponent,
+    MemberDetailsComponent,
+    MemberListComponent,
+    MemberEditComponent,
+    PhotoEditorComponent,
+    MemberMessagesComponent,
+    MemberCardComponent,
+    NotFoundComponent,
     
     
   ],
@@ -63,11 +79,18 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatInputModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ToastrModule.forRoot({
+      
+      positionClass: 'toast-bottom-right',
+      
+    }),
 
 
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
