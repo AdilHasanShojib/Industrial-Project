@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class NavComponent implements OnInit,OnDestroy {
   isLoggedIn: boolean=false;
-  constructor(public authService:AuthService){
+  constructor(public authService:AuthService, public router: Router){
     this.loggedIn();
   }
   ngOnDestroy(): void {
@@ -35,6 +36,7 @@ export class NavComponent implements OnInit,OnDestroy {
 
   onLogOut(){
     this.authService.loggedOut();
+    this.router.navigate(['/']);
 
   }
 }

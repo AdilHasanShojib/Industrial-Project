@@ -36,6 +36,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { ToastrModule } from 'ngx-toastr';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 
 
@@ -85,11 +87,15 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
       positionClass: 'toast-bottom-right',
       
     }),
+    NgxSpinnerModule.forRoot({
+      type:'pacman'
+    })
 
 
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},
   ],
   bootstrap: [AppComponent]
 })
