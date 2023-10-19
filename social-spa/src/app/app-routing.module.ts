@@ -3,16 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './account/login/login.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
-import { AuthGuard } from './_guards/auth.guard';
+//import { AuthGuard } from './_guards/auth.guard';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { authGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   { path:'',
   runGuardsAndResolvers:'always',
-  //canActivate:[AuthGuard],
-  children: [{path:'members',component:MemberListComponent}],
+  canActivate:[authGuard],
+  children: [
+    {path:'members',component:MemberListComponent}
+  
+  ],
 
   },
   {path:'home',component:HomeComponent},

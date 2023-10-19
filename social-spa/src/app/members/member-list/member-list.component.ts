@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
+  paginationdata=5;
   baseUrl=environment.apiUrl;
   constructor(public http:HttpClient,public toastr:ToastrService){
 
