@@ -1,1 +1,52 @@
-<p>member-card works!</p>
+<mat-card class="example-card mb-3">
+    <mat-card-header>
+     
+        <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="example-header-image">
+        <mat-card-title class="example-card-title">User-Age-65</mat-card-title>
+        <mat-card-subtitle>User-Knownas</mat-card-subtitle>
+
+    </mat-card-header>
+    
+
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  class="example-mat-card-image">
+    
+    <ul class="list-inline member-icons animate text-center">
+        <li class="list-inline-item">
+            <button mat-mini-fab color="primary">
+                
+                <mat-icon>account_box</mat-icon>
+
+            </button>
+
+
+        </li>
+        <li class="list-inline-item">
+            <button mat-mini-fab color="primary">
+                
+                <mat-icon>message</mat-icon>
+
+            </button>
+
+
+        </li>
+    
+    </ul>
+    <mat-card-actions class="example-card-action">
+      <a>
+        <mat-icon>thumb_up</mat-icon> 
+      </a>
+
+      <a>
+        <mat-icon>favourite</mat-icon> 
+      </a>
+
+      <a>
+        <mat-icon [class.is-online="isOnline"] ><span class="blinka">accessibility_new</span></mat-icon> 
+      </a>
+
+
+
+
+
+    </mat-card-actions>
+  </mat-card>

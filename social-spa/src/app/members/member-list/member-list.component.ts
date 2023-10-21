@@ -10,6 +10,22 @@ import { environment } from 'src/environments/environment';
 })
 export class MemberListComponent implements OnInit {
   paginationdata=5;
+
+  length = 50;
+  pageSize = 10;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+
+
+
+
+
+  genderList=[
+     {value: 'male', display: 'Male'},
+     {value: 'female', display: 'Female'},
+     {value: 'other', display: 'Others'},
+  ] 
   baseUrl=environment.apiUrl;
   constructor(public http:HttpClient,public toastr:ToastrService){
 
