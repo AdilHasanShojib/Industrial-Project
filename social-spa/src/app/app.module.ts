@@ -38,6 +38,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -89,7 +90,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     }),
     NgxSpinnerModule.forRoot({
       type:'pacman'
-    })
+    }),
+    MatPaginatorModule,
 
 
   ],

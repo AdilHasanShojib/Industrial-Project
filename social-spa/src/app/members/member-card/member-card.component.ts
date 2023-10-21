@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./member-card.component.css']
 })
 export class MemberCardComponent {
+  isOnline = true;
 
 }
