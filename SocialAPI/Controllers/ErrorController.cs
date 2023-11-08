@@ -38,13 +38,19 @@ namespace SocialAPI.Controllers
         public ActionResult<AppUser> GetServerError()
         {
             var user = _dataContex.Users.Find(-1);
-            if (user == null) { return NotFound(); }
+            //if (user == null) { return NotFound(); }
+            var userTostring =user.ToString();
             return Ok(user);
 
         }
 
 
+        [HttpGet("bad-request")]
+        public ActionResult<string> GetBadRequest()
+        {
+            return BadRequest("This was not the correct Request");
 
+        }
 
 
 

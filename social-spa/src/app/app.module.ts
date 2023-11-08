@@ -34,11 +34,12 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { ToastrModule } from 'ngx-toastr';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './error/not-found/not-found.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
 
 
 
@@ -96,6 +97,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
   ],
   providers: [
+     {provide:HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true,},
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},
     {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},
   ],
