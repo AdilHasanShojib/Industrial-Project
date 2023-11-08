@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using SocialAPI.TData;
 using SocialAPI.TExtensions;
 using SocialAPI.TInterfaces;
+using SocialAPI.TMiddleware;
 using SocialAPI.TServices;
 using System.Text;
 
@@ -27,6 +28,7 @@ namespace SocialAPI
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+            app.UseMiddleware<ErrorMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -40,7 +42,7 @@ namespace SocialAPI
             app.UseAuthorization();
 
             //app.UseAuthorization();
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200/"));
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200"));
 
             app.MapControllers();
 
