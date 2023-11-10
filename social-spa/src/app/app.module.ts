@@ -40,6 +40,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { ServerErrorComponent } from './error/server-error/server-error.component';
+import { TestErrorComponent } from './error/test-error/test-error.component';
 
 
 
@@ -63,6 +65,8 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
     MemberMessagesComponent,
     MemberCardComponent,
     NotFoundComponent,
+    ServerErrorComponent,
+    TestErrorComponent,
     
     
   ],

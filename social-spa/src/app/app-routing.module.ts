@@ -7,6 +7,8 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { authGuard } from './_guards/auth.guard';
+import { TestErrorComponent } from './error/test-error/test-error.component';
+import { ServerErrorComponent } from './error/server-error/server-error.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -22,7 +24,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'not-found',component:NotFoundComponent},
- 
+  {path:'test-error',component:TestErrorComponent},
+  {path:'server-error',component:ServerErrorComponent},
   {path:'**',component:NotFoundComponent,pathMatch:'full'}
                            
 

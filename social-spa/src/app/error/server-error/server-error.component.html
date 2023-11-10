@@ -1,0 +1,47 @@
+<div class="main_server">
+    <h4>Internal Sever Error</h4>
+
+ <ng-container *ngIf="error"> 
+   <h5 style="background-color: bisque;" class="text-danger">
+
+    Error:{{error.message}}
+ </h5>
+ <p class="font-weight-bold">
+  Note: if you are seeing this then angular is probably not to be blame
+
+ </p>
+
+ <p>
+    what to do next?
+ </p>
+
+ <ol style="color:whitesmoke">
+     <li>
+       open the browser tool! Then check the falling request in the network tab
+    </li>
+
+    <li>
+
+       check the request URL- What Api endpoint are you requesting?
+    </li>
+
+
+    <li>
+   
+        Reporduce the  problem in postman - If it's reporducer then it is not Angular problem.
+         
+    </li>
+
+
+     <code style="background-color: white; padding: 15px;">
+        {{error.tackTrace}}
+
+     </code>
+
+
+
+ </ol>
+
+ </ng-container>
+
+</div>

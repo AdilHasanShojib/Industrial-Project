@@ -10,5 +10,7 @@ namespace SocialAPI.TData
         }
 
         public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<AppUser> Photos { get; set; }
     }
 }
