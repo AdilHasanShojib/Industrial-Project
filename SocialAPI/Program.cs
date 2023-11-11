@@ -13,7 +13,7 @@ namespace SocialAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +45,26 @@ namespace SocialAPI
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200"));
 
             app.MapControllers();
+
+            using var scope =app.Services.CreateScope();
+            var services = scope.ServiceProvider;    
+            try
+            {
+                var context = services.GetService<TDataContex>();
+                if (context != null)
+                {
+                    await context.Database.MigrateAsync();
+                    await UserSeedData.SeedUsers(context);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                var logger = services.GetService<ILogger<Program>>();
+                logger?.LogError(ex, "An erroe occur during migrations");
+                
+            }
+
 
             app.Run();
         }
