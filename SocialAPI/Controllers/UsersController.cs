@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialAPI.TData;
+using SocialAPI.TDto;
 using SocialAPI.TEntities;
+using SocialAPI.TInterfaces;
 
 namespace SocialAPI.Controllers
 {
@@ -12,27 +14,27 @@ namespace SocialAPI.Controllers
 
         
 
-        private readonly TDataContex _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController(TDataContex context)
+        public UsersController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             
-            return Ok(await _context.Users.ToListAsync());
+            return Ok(await _unitOfWork.UserRepository.GetMembersAsync());
         }
 
 
         [Authorize]
 
-        [HttpGet("get-userByid")]
-        public async Task<ActionResult<AppUser>> GetUsersByID(int id)
+        [HttpGet("get-userByid/{Name}")]
+        public async Task<ActionResult<MemberDto>> GetUsersByID(string userName)
         {
-            var user=await _context.Users.FindAsync(id);
+            var user= await _unitOfWork.UserRepository.GetMemberAsync(userName);
             return Ok(user);
         }
 
