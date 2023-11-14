@@ -20,8 +20,9 @@ namespace SocialAPI.TExtensions
                 opt.UseSqlServer(config.GetConnectionString("LearnSocialApp"));
 
             });
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
             return services;
