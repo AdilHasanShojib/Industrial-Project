@@ -30,34 +30,15 @@ namespace SocialAPI.TData
         
         public async Task<MemberDto> GetMemberAsync(string userName)
         {
-            var user = _context.Users.Include(x => x.Photos).FirstOrDefaultAsync(x => x.Name.ToLower() == userName.ToLower());
+            var user = await _context.Users
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(x => x.Name.ToLower() == userName.ToLower());
 
-            if (user == null) { return new MemberDto(); }
+            if (user == null)  return new MemberDto(); 
 
-            //var mapped = new MemberDto
-            //{
+           
 
-
-            //    Name = user.Name,
-
-            //    Photos = new List<PhotoDto>
-            //    {
-            //        new PhotoDto {
-
-            //         Url = user?.Photos.FirstOrDefault(x => x.IsMain).Url,
-
-
-
-            //        }
-
-            //    },
-            //};
-            //
-            //
-            //return mapped;
-
-            var newUser=_mapper.Map<MemberDto>(user);
-            return newUser;
+            return user;
 
 
         }
@@ -67,11 +48,11 @@ namespace SocialAPI.TData
 
 
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync(UserParams userParams)
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
             var usersQuery = _context.Users.Include(x => x.Photos).AsQueryable();
 
-            if (!usersQuery.Any()) return new List<MemberDto>();
+            if (!usersQuery.Any()) return new PagedList<MemberDto>();
 
             // Filter, Search, Orderby
             usersQuery = usersQuery.Where(x => x.Name != userParams.CurrentUsername);

@@ -32,6 +32,7 @@ namespace SocialAPI.TDto
             set;
         }
 
+        public string PhotoUrl { get; set; }
 
         public DateTime LastActive
         {

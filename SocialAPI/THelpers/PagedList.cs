@@ -7,10 +7,15 @@ namespace SocialAPI.THelpers
         public PagedList(IEnumerable<T> items, int count, int pageNumber, int pageSize)
         {
             CurrentPage = pageNumber;
-            PageSize = (int) Math.Ceiling(count/(double)pageSize);
+            TotalPages = (int) Math.Ceiling(count/(double)pageSize);
             TotalCount = count;
-            TotalPages = pageSize;
+            PageSize = pageSize;
             AddRange(items);
+        }
+
+        public PagedList()
+        {
+            
         }
 
         public int CurrentPage { get; set; }

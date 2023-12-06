@@ -1,4 +1,5 @@
-﻿using SocialAPI.TEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialAPI.TEntities;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -10,7 +11,7 @@ namespace SocialAPI.TData
 
         public static async Task SeedUsers(TDataContex context)
         {
-
+            if (await context.Users.AnyAsync()) return;
             var userData = await File.ReadAllTextAsync("TData/UserSeedData.json");
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);

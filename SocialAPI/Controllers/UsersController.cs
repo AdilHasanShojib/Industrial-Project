@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialAPI.TData;
 using SocialAPI.TDto;
 using SocialAPI.TEntities;
+using SocialAPI.TExtensions;
 using SocialAPI.THelpers;
 using SocialAPI.TInterfaces;
 
@@ -33,8 +34,12 @@ namespace SocialAPI.Controllers
 
         [HttpGet]
         public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
+
         {
-            return Ok(await _unitOfWork.UserRepository.GetMembersAsync(userParams));
+            var users = await _unitOfWork.UserRepository.GetMembersAsync(userParams);
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage,users.PageSize,users.TotalCount,users.TotalPages));
+
+            return Ok(users);
         }
 
         //[HttpGet("id")]
