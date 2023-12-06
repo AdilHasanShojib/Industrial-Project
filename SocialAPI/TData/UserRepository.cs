@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SocialAPI.TDto;
 using SocialAPI.TEntities;
+using SocialAPI.THelpers;
 using SocialAPI.TInterfaces;
 
 namespace SocialAPI.TData
@@ -63,14 +65,42 @@ namespace SocialAPI.TData
 
 
 
-        public async Task<IEnumerable<AppUser>> GetMembersAsync()
+
+
+        public async Task<IEnumerable<MemberDto>> GetMembersAsync(UserParams userParams)
         {
-            return await _context.Users.Include(x => x.Photos).ToListAsync();
+            var usersQuery = _context.Users.Include(x => x.Photos).AsQueryable();
+
+            if (!usersQuery.Any()) return new List<MemberDto>();
+
+            // Filter, Search, Orderby
+            usersQuery = usersQuery.Where(x => x.Name != userParams.CurrentUsername);
+
+            //var result = _mapper.Map<MemberDto>(usersQuery);
+            //var mappedusers = new List<MemberDto>();
+
+            //foreach (var item in usersQuery)
+            //{
+            //    var user = new MemberDto
+            //    {
+            //        UserName = item?.UserName,
+            //        Photos = new List<PhotoDto>
+            //    {
+            //        new PhotoDto
+            //        {
+            //            Url = item?.Photos.FirstOrDefault(x => x.IsMain).Url,
+            //        }
+            //    }
+            //    };
+            //    mappedusers.Add(user);
+            //}
+
+            var queryResult = usersQuery.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider);
+
+            return await PagedList<MemberDto>.CreatePagedAsync(queryResult, userParams.PageNumber, userParams.PageSize);
         }
 
-
-
-
+       
     }
 
 

@@ -68,7 +68,7 @@ namespace SocialAPI.Controllers
 
 
 
-                var user=await _context.Users.SingleOrDefaultAsync(x =>x.Name.ToLower()==loginDto.UserName.ToLower());
+                var user=await _context.Users.FirstOrDefaultAsync(x =>x.Name.ToLower()==loginDto.UserName.ToLower());
                 if (user==null) { return Unauthorized("Invalid UserName"); }
                 using var hmac= new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
