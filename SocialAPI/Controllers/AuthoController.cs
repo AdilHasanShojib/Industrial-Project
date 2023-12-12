@@ -68,7 +68,7 @@ namespace SocialAPI.Controllers
 
 
 
-                var user=await _context.Users.FirstOrDefaultAsync(x =>x.Name.ToLower()==loginDto.UserName.ToLower());
+                var user=await _context.Users.Include(x => x.Photos).FirstOrDefaultAsync(x =>x.Name.ToLower()==loginDto.UserName.ToLower());
                 if (user==null) { return Unauthorized("Invalid UserName"); }
                 using var hmac= new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
@@ -81,8 +81,9 @@ namespace SocialAPI.Controllers
             {
                 Username = user.Name,
                 Token = await _tokenService.CreateToken(user),
-                Gender=user.Gender,
-                KnownAS=user.Gender
+                Gender = user.Gender,
+                KnownAS = user.KnownAs,
+                PhotoUrl = user?.Photos.FirstOrDefault(x => x.IsMain)?.Url
 
 
 

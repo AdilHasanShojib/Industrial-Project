@@ -11,5 +11,7 @@
         public string Gender { get; set; }
 
         public string KnownAS { get; set; }
+
+        public string PhotoUrl {  get; set; }
     }
 }
