@@ -35,12 +35,12 @@ export class MemberListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get(`${this.baseUrl}users`).subscribe({
-      next:() => {},
-      error:() =>{
-        this.toastr.error('Bearer token not found');
-      }
-    })
+    // this.http.get(`${this.baseUrl}users`).subscribe({
+    //   next:() => {},
+    //   error:() =>{
+    //     this.toastr.error('Bearer token not found');
+    //   }
+    // })
   }
 
 }
