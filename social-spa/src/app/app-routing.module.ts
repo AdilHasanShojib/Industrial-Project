@@ -9,6 +9,7 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
 import { authGuard } from './_guards/auth.guard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   runGuardsAndResolvers:'always',
   canActivate:[authGuard],
   children: [
-    {path:'members',component:MemberListComponent}
+    {path:'members',component:MemberListComponent},
+    {path:'member/:userName',component:MemberDetailsComponent}
   
   ],
 
