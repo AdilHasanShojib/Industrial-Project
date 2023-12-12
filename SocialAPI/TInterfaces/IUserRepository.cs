@@ -10,6 +10,7 @@ namespace SocialAPI.TInterfaces
 
         Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams);
         Task<MemberDto> GetMemberAsync(String userName);
+        Task<AppUser> GetUserByNameAsync(String name);
 
 
 

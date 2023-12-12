@@ -10,6 +10,7 @@ import { authGuard } from './_guards/auth.guard';
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -19,7 +20,7 @@ const routes: Routes = [
   children: [
     {path:'members',component:MemberListComponent},
     {path:'member/edit',component:MemberListComponent},
-    {path:'member/:userName',component:MemberDetailsComponent}
+    {path:'member/:userName',component:MemberDetailsComponent, canDeactivate:[preventUnsavedChangesGuard]}
   
   ],
 
