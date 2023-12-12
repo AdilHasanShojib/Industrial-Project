@@ -1,13 +1,32 @@
 import { Injectable } from '@angular/core';
 import { UserParams } from '../_models/user-params';
-import { getPaginationHeader } from '../_helpers/paginationHelper';
+import { getPaginationHeader, getPaginationResult } from '../_helpers/paginationHelper';
+import { Members } from '../_models/members';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService {
+baseUrl=environment.apiUrl;
+members: Members[]=[];
+userParams:UserParams|undefined;
+user:User | undefined;
+memberCache=new Map();
+  constructor(private http:HttpClient,private authService:AuthService) {
+    this.authService.currentUser$.subscribe({
+    next:(res)=> {
+      if(res){
+        this.userParams=new UserParams(res);
+        this.user=res;
+      }
+    }
 
-  constructor() { }
+
+    })
+   }
 
 
 
@@ -28,7 +47,14 @@ export class MembersService {
   params=params.append('currentUserName',this.user?.username);
  }
  
- 
+ return getPaginationResult<Members[]>(this.baseUrl+'users',params,this.http).pipe(
+  map((res)=>{
+    this.memberCache.set(Object.values(userParams).join('-'),res);
+    return res;
+  })
+
+
+ );
 
 
 
@@ -37,8 +63,8 @@ export class MembersService {
   }
 
 
-getMemberByUserName(userName: string){
-  return this.http.get<Members>(this.baseUrl + 'users'+userName);
+getMemberByUserName(userName?: string){
+  return this.http.get<Members>(this.baseUrl + 'users/get-userByName'+userName);
 }
 
 getUserParams(){

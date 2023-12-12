@@ -8,7 +8,8 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-details.component.css']
 })
 export class MemberDetailsComponent implements OnInit {
-
+  member: Members={} as Members;
+  images:GalleryItem[]=[];
 constructor(private route:ActivatedRoute,private memberService:MembersService){
   console.log(this.route.snapshot.params['userName']);
 }
@@ -22,5 +23,18 @@ constructor(private route:ActivatedRoute,private memberService:MembersService){
     });
   }
 
+  onTabChange($event:any){
+
+
+  }
+
+  goMessage(tabTitles: string){
+    
+  }
+
+  private getImages(){
+    if(!this.member) return [];
+    return [];
+  }
 
 }

@@ -29,7 +29,11 @@ namespace SocialAPI.TData
         
         
         public async Task<MemberDto> GetMemberAsync(string userName)
+
         {
+
+            if(string.IsNullOrEmpty(userName)) throw new ArgumentNullException(nameof(userName));
+
             var user = await _context.Users
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(x => x.Name.ToLower() == userName.ToLower());

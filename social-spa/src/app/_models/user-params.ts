@@ -15,7 +15,13 @@ export class UserParams {
         orderBy = 'lastActivity';
 
         constructor(user: User){
-          this.gender=user?.gender == 'female' ? 'male' : 'female';            
+          this.gender=user.gender;
+          console.log("🚀 ~ file: user-params.ts:19 ~ UserParams ~ constructor ~ this.gender=user.gender;:", this.gender=user.gender;)
+          // this.gender=user?.gender == 'female' ? 'male' : 'female';            
+        
+        
+        
+        
         }
        
   

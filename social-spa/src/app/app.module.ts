@@ -64,9 +64,11 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
     PhotoEditorComponent,
     MemberMessagesComponent,
     MemberCardComponent,
+    
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorComponent,
+    
     
     
   ],

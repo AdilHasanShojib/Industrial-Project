@@ -80,7 +80,10 @@ namespace SocialAPI.Controllers
             var userToken = new UserDto
             {
                 Username = user.Name,
-                Token = await _tokenService.CreateToken(user)
+                Token = await _tokenService.CreateToken(user),
+                Gender=user.Gender,
+                KnownAS=user.Gender
+
 
 
             };

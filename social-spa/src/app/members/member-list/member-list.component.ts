@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Pagination } from 'src/app/_models/pagination';
+import { UserParams } from 'src/app/_models/user-params';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,13 +10,20 @@ import { environment } from 'src/environments/environment';
   templateUrl: './member-list.component.html',
   styleUrls: ['./member-list.component.css']
 })
-export class MemberListComponent implements OnInit {
-  paginationdata=5;
+export class MemberListComponent implements OnInit,OnDestroy {
+  userParams: UserParams|undefined;
+  members:Members[]=[];
+  pagination:Pagination| undefined;
+ 
 
-  length = 50;
-  pageSize = 10;
-  pageIndex = 0;
-  pageSizeOptions = [5, 10, 25];
+
+  
+  //paginationdata=5;
+
+  // length = 50;
+  // pageSize = 10;
+  // pageIndex = 0;
+  // pageSizeOptions = [5, 10, 25];
 
 
 
@@ -30,6 +39,9 @@ export class MemberListComponent implements OnInit {
   constructor(public http:HttpClient,public toastr:ToastrService){
 
   }
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
 
 
@@ -42,5 +54,7 @@ export class MemberListComponent implements OnInit {
     //   }
     // })
   }
+
+
 
 }
