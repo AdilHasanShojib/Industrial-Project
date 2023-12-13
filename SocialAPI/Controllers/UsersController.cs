@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 using SocialAPI.TData;
 using SocialAPI.TDto;
@@ -57,6 +58,21 @@ namespace SocialAPI.Controllers
             var user= await _unitOfWork.UserRepository.GetMemberAsync(userName);
             return Ok(user);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        {
+            var username = User.GetUserName;
+            var user = await _unitOfWork.UserRepository.GetUserByNameAsync(User.GetUserName;);
+            if (user == null) return NotFound();
+            _mapper.Map(memberUpdateDto, user);
+
+            if (await _unitOfWork.Complete()) return NoContent();
+            return BadRequest("Faile to Update user");
+
+
+        }
+
 
     }
 }

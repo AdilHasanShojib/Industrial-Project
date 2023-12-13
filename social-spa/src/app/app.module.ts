@@ -42,6 +42,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
 import { TestErrorComponent } from './error/test-error/test-error.component';
+import { MemberPhotoEditorComponent } from './members/member-photo-editor/member-photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -68,6 +70,7 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorComponent,
+    MemberPhotoEditorComponent,
     
     
     
@@ -98,6 +101,7 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
     NgxSpinnerModule.forRoot({
       type:'pacman'
     }),
+    FileUploadModule,
     MatPaginatorModule,
 
 

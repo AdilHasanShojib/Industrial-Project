@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SocialAPI.TData;
+using SocialAPI.THelpers;
 using SocialAPI.TInterfaces;
 using SocialAPI.TServices;
 
@@ -23,6 +24,8 @@ namespace SocialAPI.TExtensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+            services.AddScoped<IPhotoService,PhotoService>();
 
 
             return services;
