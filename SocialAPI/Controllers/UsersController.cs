@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
@@ -14,14 +15,17 @@ namespace SocialAPI.Controllers
     [Authorize]
     public class UsersController : BaseController
     {
-
         
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IPhotoService _photoService;
 
-        public UsersController(IUnitOfWork unitOfWork)
+        public UsersController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _photoService = photoService;
         }
 
         //[HttpGet]
@@ -64,15 +68,39 @@ namespace SocialAPI.Controllers
         {
             var username = User.GetUserName;
             var user = await _unitOfWork.UserRepository.GetUserByNameAsync(User.GetUserName;);
-            if (user == null) return NotFound();
+            if (user == null) { return NotFound(); }
             _mapper.Map(memberUpdateDto, user);
 
             if (await _unitOfWork.Complete()) return NoContent();
-            return BadRequest("Faile to Update user");
+            {
+                return BadRequest("Faile to Update user");
+            }
 
 
         }
 
+        [HttpPost("add-image")]
+
+        public async Task<ActionResult<PhotoDto>> AddUserImage(IFormFile file)
+        {
+
+        }
+
+
+        [HttpPut("set-main-image/{photoId}")]
+
+        public async Task<ActionResult> SetMainImage(int photoId)
+        {
+
+        }
+
+        [HttpDelete("delete-photo/{photoId}")]
+
+        public async Task<ActionResult> SetMainImage(int photoId)
+        {
+
+
+        }
 
     }
 }

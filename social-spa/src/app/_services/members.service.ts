@@ -67,6 +67,15 @@ getMemberByUserName(userName?: string){
   return this.http.get<Members>(this.baseUrl + 'users/get-userByName'+userName);
 }
 
+updateMember(member: Members){
+  return this.http.put(this.baseUrl+ `users`, member);
+}
+
+setMainImage(photoId: number){
+  return this.http.put(this.baseUrl+ `users/set-main-image`+photoId,{});
+}
+
+
 getUserParams(){
   return this.userParams;
 }
