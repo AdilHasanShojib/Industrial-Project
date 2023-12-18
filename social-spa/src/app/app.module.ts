@@ -48,6 +48,11 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { LikesListComponent } from './likes-list/likes-list.component';
 import { TimeagoModule } from 'ngx-timeago';
 import { MessagePannelComponent } from './message-pannel/message-pannel.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { RolesManagementComponent } from './admin/roles-management/roles-management.component';
+import { HasRolesDirective } from './_directives/has-roles.directive';
+import { ConfirmationModalComponent } from './_modals/confirmation-modal/confirmation-modal.component';
+import { RolesModalComponent } from './_modals/roles-modal/roles-modal.component';
 
 
 
@@ -78,6 +83,11 @@ import { MessagePannelComponent } from './message-pannel/message-pannel.componen
     MemberPhotoEditorComponent,
     LikesListComponent,
     MessagePannelComponent,
+    AdminPanelComponent,
+    RolesManagementComponent,
+    HasRolesDirective,
+    ConfirmationModalComponent,
+    RolesModalComponent,
     
     
     
