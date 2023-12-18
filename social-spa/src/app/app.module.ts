@@ -44,6 +44,7 @@ import { ServerErrorComponent } from './error/server-error/server-error.componen
 import { TestErrorComponent } from './error/test-error/test-error.component';
 import { MemberPhotoEditorComponent } from './members/member-photo-editor/member-photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { LikesListComponent } from './likes-list/likes-list.component';
 
 
 
@@ -71,6 +72,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     ServerErrorComponent,
     TestErrorComponent,
     MemberPhotoEditorComponent,
+    LikesListComponent,
     
     
     

@@ -11,6 +11,7 @@ import { TestErrorComponent } from './error/test-error/test-error.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
+import { LikesListComponent } from './likes-list/likes-list.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   children: [
     {path:'members',component:MemberListComponent},
     {path:'member/edit',component:MemberListComponent},
-    {path:'member/:userName',component:MemberDetailsComponent, canDeactivate:[preventUnsavedChangesGuard]}
+    {path:'member/:userName',component:MemberDetailsComponent, canDeactivate:[preventUnsavedChangesGuard]},
+    {path:'like-lists',component:LikesListComponent}
   
   ],
 
