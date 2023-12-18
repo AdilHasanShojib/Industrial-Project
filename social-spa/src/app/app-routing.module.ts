@@ -12,6 +12,7 @@ import { ServerErrorComponent } from './error/server-error/server-error.componen
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { LikesListComponent } from './likes-list/likes-list.component';
+import { MessagePannelComponent } from './message-pannel/message-pannel.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
     {path:'members',component:MemberListComponent},
     {path:'member/edit',component:MemberListComponent},
     {path:'member/:userName',component:MemberDetailsComponent, canDeactivate:[preventUnsavedChangesGuard]},
-    {path:'like-lists',component:LikesListComponent}
+    {path:'like-lists',component:LikesListComponent},
+    {path:'message-panel',component:MessagePannelComponent},
   
   ],
 

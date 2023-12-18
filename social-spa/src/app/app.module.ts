@@ -23,6 +23,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TbInputComponent } from './_forms/tb-input/tb-input.component';
 import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
@@ -46,6 +47,7 @@ import { MemberPhotoEditorComponent } from './members/member-photo-editor/member
 import { FileUploadModule } from 'ng2-file-upload';
 import { LikesListComponent } from './likes-list/likes-list.component';
 import { TimeagoModule } from 'ngx-timeago';
+import { MessagePannelComponent } from './message-pannel/message-pannel.component';
 
 
 
@@ -54,6 +56,7 @@ import { TimeagoModule } from 'ngx-timeago';
     AppComponent,
     NavComponent,
     FooterComponent,
+    
     HomeComponent,
     MainComponent,
     LoggedInMainComponent,
@@ -74,6 +77,7 @@ import { TimeagoModule } from 'ngx-timeago';
     TestErrorComponent,
     MemberPhotoEditorComponent,
     LikesListComponent,
+    MessagePannelComponent,
     
     
     
@@ -85,6 +89,7 @@ import { TimeagoModule } from 'ngx-timeago';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatTooltipModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

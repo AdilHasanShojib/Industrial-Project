@@ -29,6 +29,13 @@ constructor(private route:ActivatedRoute,private memberService:MembersService,pr
 
   }
 
+  loadMessages(){
+    if(!this.member.userName) return;
+    this.memberService.getMessagesThread(this.member.userName).subscribe({
+      next:(res) => this.messages = res
+    })
+  }
+
   goMessage(tabTitles: string){
     
   }
