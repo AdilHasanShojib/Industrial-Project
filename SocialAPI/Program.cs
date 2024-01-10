@@ -1,8 +1,10 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SocialAPI.TData;
+using SocialAPI.TEntities;
 using SocialAPI.TExtensions;
 using SocialAPI.TInterfaces;
 using SocialAPI.TMiddleware;
@@ -48,6 +50,8 @@ try
     var context = services.GetService<TDataContex>();
     if(context != null)
     {
+        var userManager = services.GetRequiredService<UserManager<AppUser>>();
+        var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
         await context.Database.MigrateAsync();
         await UserSeedData.SeedUsers(context);
 

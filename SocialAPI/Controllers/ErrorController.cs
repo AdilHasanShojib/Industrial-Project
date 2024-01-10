@@ -7,55 +7,42 @@ namespace SocialAPI.Controllers
 {
     public class ErrorController : BaseController
     {
-        private readonly TDataContex _dataContex;
+        private readonly TDataContext _dataContext;
 
-        public ErrorController(TDataContex dataContex)
+        public ErrorController(TDataContext dataContext)
         {
-            _dataContex = dataContex;
+            _dataContext = dataContext;
         }
 
         [Authorize]
-        [HttpGet]
-        public ActionResult<string> GetUserSecret()
+        [HttpGet("auth")]
+        public ActionResult<string> GetUserSecrete()
         {
-
             return Ok("secret text");
-
         }
 
         [HttpGet("not-found")]
         public ActionResult<AppUser> GetNotFound()
         {
-            var user = _dataContex.Users.Find(-1);
-            if(user == null) { return NotFound(); }
+            var user = _dataContext.Users.Find(-1);
+            if (user == null) return NotFound();
             return Ok(user);
-
         }
-
-
 
         [HttpGet("server-error")]
         public ActionResult<AppUser> GetServerError()
         {
-            var user = _dataContex.Users.Find(-1);
-            //if (user == null) { return NotFound(); }
-            var userTostring =user.ToString();
+            var user = _dataContext.Users.Find(-1);
+            var userToString = user.ToString();
             return Ok(user);
-
         }
-
 
         [HttpGet("bad-request")]
+
         public ActionResult<string> GetBadRequest()
         {
-            return BadRequest("This was not the correct Request");
-
+            return BadRequest("This was not the correct request");
         }
-
-
-
-
-
 
     }
 }
