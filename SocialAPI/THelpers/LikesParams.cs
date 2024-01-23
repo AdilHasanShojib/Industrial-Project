@@ -1,6 +1,8 @@
 ﻿namespace SocialAPI.THelpers
 {
-    public class LikesParams
+    public class LikesParams : PaginationParams
     {
+        public int UserId { get; set; }
+        public string Predicate { get; set; }
     }
 }
