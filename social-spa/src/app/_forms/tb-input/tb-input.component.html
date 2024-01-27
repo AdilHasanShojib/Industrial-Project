@@ -1,24 +1,34 @@
-<mat-form-field class="mat-form-field" appearance="outline">
-    <mat-label>{{label}}</mat-label>
-    <input type="{{types}}" matInput [formControl]="control" placeholder="{{placeholder}}" />
+<mat-form-field class="mat--form--filed" appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    type="{{ types }}"
+    matInput
+    [formControl]="control"
+    placeholder="{{ placeholder }}"
+  />
 
-    <a
-    *ngif="passwordType === 'password'"
-    mat-icon-button matSuffix (click)="onEyeClick(iconHide)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="iconHide">
-        <mat-icon class="eye-icon">{{iconHide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </a>
+  <a
+  *ngIf="passwordType === 'password'"
+    mat-icon-button
+    matSuffix
+    (click)="onEyeClick(iconHide)"
+    [attr.aria-label]="'Hide password'"
+    [attr.aria-pressed]="iconHide"
+  >
+    <mat-icon class="eye-icon">{{
+        iconHide ? "visibility_off" : "visibility"
+    }}</mat-icon>
+  </a>
+</mat-form-field>
 
+<ng-container  *ngIf="control?.touched || control?.dirty">
+  <mat-error class="pb-3" *ngIf="control?.errors?.['required']">Please {{label}}</mat-error>
+  <mat-error class="pb-3" *ngIf="control?.errors?.['minlength']">
+    Must be {{control.errors?.['minlength'].requiredLength}} characters Password length.
+  </mat-error>
+  <mat-error class="pb-3" *ngIf="control?.errors?.['maxlength']">
+    Must be {{control.errors?.['maxlength'].requiredLength}} characters Password length.
+  </mat-error>
 
-  </mat-form-field>
-
-  <ng-container *ngIf="control?.touched || control?.dirty">
-    
-    <mat-error class="pb-3" *ngIf="control?.errors?.['required']">please {{label}}</mat-error>
-
-    <mat-error class="pb-3" *ngIf="control?.errors?.['minlength']">Must be {{control.errors?.['minlength'].requiredLength}} characters password length</mat-error>
-  <mat-error class="pb-3" *ngIf="control?.errors?.['maxlength']">Must be {{control.errors?.['maxlength'].requiredLength}} characters password length</mat-error>
-
-  <mat-error class="pb-3" *ngIf="control?.errors?.['notMatched']">{{label}} doesn't match</mat-error>
-
-  </ng-container>
- 
+  <mat-error class="pb-3" *ngIf="control?.errors?.['notMatched']"> {{label}} doesn't match</mat-error>
+</ng-container>

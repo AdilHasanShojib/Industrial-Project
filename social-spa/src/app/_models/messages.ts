@@ -1,6 +1,4 @@
-
-
-export interface MessageDto {
+export interface Messages {
     id: number;
     senderId: number;
     senderUsername: string;
@@ -9,7 +7,6 @@ export interface MessageDto {
     recipientUsername: string;
     recipientPhotoUrl: string;
     content: string;
-    dateRead?: Date;
-    messageSent:Date;
+    dateRead?: Date
+    messageSent: Date;
 }
-

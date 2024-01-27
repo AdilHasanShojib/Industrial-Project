@@ -1,1 +1,33 @@
-<p>roles-modal works!</p>
+<h1 mat-dialog-title>Edit Roles</h1>
+<div mat-dialog-content>
+  <p>Do you really want to change the roles of {{ username }}</p>
+  <form
+    [formGroup]="rolesForm"
+    #myRolesForm="ngForm"
+    (ngSubmit)="OnSaveModal()"
+    id="rolesForm"
+  >
+    <mat-form-field>
+      <mat-label>Favorite food</mat-label>
+      <mat-select
+        placeholder="Select Roles"
+        formControlName="selectedRoles"
+        multiple
+      >
+        <mat-option
+          *ngFor="let roles of availableRoles"
+          [value]="roles"
+          [disabled]="roles === 'Admin' && username === 'admin'"
+        >
+          {{ roles }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end mb-3">
+    <button mat-raised-button color="accent" (click)="onNoClick()">No</button>
+    <button mat-raised-button color="primary" (click)="myRolesForm.ngSubmit.emit()" type="submit" cdkFocusInitial>
+        Yes
+    </button>
+</div>

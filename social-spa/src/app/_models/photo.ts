@@ -5,5 +5,6 @@ export interface Photo {
     isMain: boolean;
     isApproved: boolean;
     isRejected: boolean;
-
+    username:string;
+    userId: number;
 }
