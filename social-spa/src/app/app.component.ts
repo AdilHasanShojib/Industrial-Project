@@ -8,23 +8,18 @@ import { AuthService } from './_services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Social-Apps';
+  title = 'Social Apps';
   users: any;
-  constructor(private authService:AuthService){
-
-  }
+  constructor(private authService: AuthService){}
+  
   ngOnInit(): void {
-    this.setcurrentuser();
+   this.setCurrentUser();
   }
 
-   setcurrentuser(){
-   const userstring =localStorage.getItem('currentUser');
-   if(!userstring) return;
-   const user =JSON.parse(userstring);
-   this.authService.setCurrentUser(user);
-
-
-   }
-
-   
+  setCurrentUser() {
+    const userString = localStorage.getItem('currentUser');
+    if(!userString) return;
+    const user = JSON.parse(userString);
+    this.authService.setCurrentUser(user);
+  }
 }

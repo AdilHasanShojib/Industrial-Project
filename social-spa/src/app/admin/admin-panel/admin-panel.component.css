@@ -1,0 +1,9 @@
+.example-stretched-tabs {
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+.example-stretched-tabs ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color: black !important;
+    padding: 10px;
+  }

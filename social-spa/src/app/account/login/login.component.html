@@ -1,183 +1,155 @@
 <div class="container mt-5">
-<mat-card class="example-card">
-    <mat-card-content>
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
-      <form #myLoginForm="ngForm" [formGroup]="loginForm" (ngSubmit)="userLogin()">
-        <mat-tab label="Login">
-          <div class="login-form">
-           <mat-form-field class="mat-form-field" appearance="outline">
-             <mat-label>Enter your user name</mat-label>
-             <input type="text" matInput formControlName="username" placeholder="MaxUserName" required>
-       
-       
-           </mat-form-field>
-           <mat-form-field class="mat-form-field" appearance="outline">
-             <mat-label>Enter your password</mat-label>
-             <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-             <mat-icon class="eye-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-           </button>
-             
-       
-           </mat-form-field>
-          </div>
-       
-         </mat-tab>
-      </form>
- 
-  <mat-tab label="Register">
-  <form #myRegisterForm="ngForm"  [formGroup]="registrationForm" (ngSubmit)="userRegister()">
+     <mat-card class="example-card">
+        <mat-card-content>
+            <mat-tab-group
+            mat-stretch-tabs="false"
+            mat-align-tabs="center"
+            (selectedTabChange)="onTabChange($event)"
+            >
+            <form #myLoginForm="ngForm" [formGroup]="loginForm" (ngSubmit)="userLogin()">
+                <mat-tab label="Login">
+                    <div class="login-form">
+                        <mat-form-field 
+                           class="mat--form--filed" 
+                           appearance="outline">
+                           <mat-label>Enter your username</mat-label>
+                            <input type="text" 
+                            matInput 
+                            formControlName="username"
+                            placeholder="MaxUsername" 
+                            required />
+                        </mat-form-field> 
+                        <mat-form-field 
+                            class="mat--form--filed" 
+                            appearance="outline">
+                            <mat-label>Enter your password</mat-label>
+                            <input 
+                            formControlName="password"
+                            matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon class="eye-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                     </mat-form-field> 
+                    </div>
+                </mat-tab>
+            </form>
+                <mat-tab label="Register">
+                    <form #myRegisterForm="ngForm"  [formGroup]="registrationForm" (ngSubmit)="userRegister()">
 
-    <div class="login-form" >
+                    <div class="login-form">
+                        <mat-radio-group formControlName="gender" aria-label="Select an option">
+                            <mat-radio-button value="male">Male</mat-radio-button>
+                            <mat-radio-button value="female">Female</mat-radio-button>
+                            <mat-radio-button value="third">Third(D)</mat-radio-button>
+                          </mat-radio-group>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['username'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'MaxUsername'"
+                        [label]="'Enter your User Name'"
+                        >
+                        </app-tb-input>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['firstname'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'MaxFirstName'"
+                        [label]="'Enter your First Name'"
+                        >
+                        </app-tb-input>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['lastname'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'MaxLastName'"
+                        [label]="'Enter your Last Name'"
+                        >
+                        </app-tb-input>
 
-      <mat-radio-group formControlName="gender" aria-label="Select an option">
-        <mat-radio-button value="male">Male</mat-radio-button>
-        <mat-radio-button value="female">Female</mat-radio-button>
-        <mat-radio-button value="others">Others</mat-radio-button>
-      </mat-radio-group>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['email'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'MaxEmail@example.com'"
+                        [label]="'Enter the valid email address'"
+                        >
+                        </app-tb-input>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['knownAs'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'KnownAs'"
+                        [label]="'Enter  your cool name'"
+                        >
+                        </app-tb-input>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['city'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'Dhaka'"
+                        [label]="'Enter Your City'"
+                        >
+                        </app-tb-input>
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['country'])"
+                        [types]="'text'"
+                        [passwordType]="'p'"
+                        [iconHide]="false"
+                        [placeholder]="'Bangaldesh'"
+                        [label]="'Enter Your Country'"
+                        >
+                        </app-tb-input>
+                        <app-tb-date-picker
+                        [formControl]="$any(registrationForm.controls['dateOfBirth'])"
+                        [minDate]="mindate"
+                        [label]="'Choose a date'"
+                        >
+                        </app-tb-date-picker>
 
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['password'])"
+                        [types]="'password'"
+                        
+                        [iconHide]="true"
+                        [placeholder]="'*****'"
+                        [label]="'Enter Your Password'"
+                        >
+                        </app-tb-input>
 
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['username'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'MaxUserName'"
-      [label]="'Enter Your User Name'"
-      >
+                        <app-tb-input
+                        [formControl]="$any(registrationForm.controls['confirmPassword'])"
+                        [types]="'password'"
+                        
+                        [iconHide]="true"
+                        [placeholder]="'*****'"
+                        [label]="'Confirm Your Password'"
+                        >
+                        </app-tb-input>
+                    </div>
 
-      </app-tb-input>
-
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['firstname'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'Maxfirstname'"
-      [label]="'Enter Your first Name'"
-      >
-
-      </app-tb-input>
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['lastname'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'Maxlastname'"
-      [label]="'Enter Your Last Name'"
-      >
-
-      </app-tb-input>
-
-
-
-
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['email'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'Maxemail'"
-      [label]="'Enter Your valid email'"
-      >
-
-      </app-tb-input>
-
-      
-    
-    
-
-
-
-
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['knownAs'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'Knownas'"
-      [label]="'Enter Your cool Name'"
-      >
-
-      </app-tb-input>
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['city'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'Dhaka'"
-      [label]="'Enter Your CITY'"
-      >
-
-      </app-tb-input>
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['country'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'BD'"
-      [label]="'Enter Your Country name'"
-      >
-
-      </app-tb-input>
-
-      <app-date-picker
-        [formControl]="$any(registrationForm.controls['DOB'])" 
-        [minDate]="mindate"
-        [label]="'choose a date'"
-        >
-      </app-date-picker>
-    
-
-
-
-
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['username'])" 
-      [types]="'text'"   
-      [passwordType]="'p'"
-      [iconHide]="false"
-      [placeholder]="'MaxUserName'"
-      [label]="'Enter Your User Name'"
-      >
-
-      </app-tb-input>
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['password'])" 
-      [types]="'password'"   
-     
-      [iconHide]="true"
-      [placeholder]="'*******'"
-      [label]="'Enter Your password'"
-      >
-
-      </app-tb-input>
-
-      <app-tb-input
-      [formControl]="$any(registrationForm.controls['Confirmpassword'])" 
-      [types]="'password'"   
-     
-      [iconHide]="true"
-      [placeholder]="'*******'"
-      [label]="'Enter Your Confirm password'"
-      >
-
-      </app-tb-input>
-     
-
-     </div>
- </form>
-  </mat-tab>
-    </mat-tab-group>
-
-
-    </mat-card-content>
-    <mat-card-actions class="mat_card_action">
-        <a routerLink="/home" mat-raised-button >Cancel </a>
-        <button  *ngIf="!isRegForms" (click)="myLoginForm.ngSubmit.emit()" [disabled]="!loginForm.valid" mat-raised-button>Login</button>
-        <button *ngIf="isRegForms" (click)="myRegisterForm.ngSubmit.emit()" [disabled]="!registrationForm.valid" mat-raised-button >Register</button>
-
-    </mat-card-actions>
-</mat-card>
-
+                </form>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+        <mat-card-actions class="mat_card_action">
+            <a routerLink="/home" mat-raised-button>Cancel</a>
+            <button 
+            *ngIf="!isRegistraionForm"
+            (click)="myLoginForm.ngSubmit.emit()"
+            [disabled]="!loginForm.valid"
+            mat-raised-button>Login</button>
+            <button
+            *ngIf="isRegistraionForm"
+            (click)="myRegisterForm.ngSubmit.emit()"
+            [disabled]="registrationForm.invalid"
+            mat-raised-button>Register</button>
+        </mat-card-actions>
+     </mat-card>
 </div>

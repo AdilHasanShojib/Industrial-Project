@@ -1,1 +1,30 @@
-<p>likes-list works!</p>
+<div class="container mt-3">
+    <div class="text-center">
+        <h2>
+            {{predicate === "liked" ? "Members I liked": "Members, who like me" }}
+        </h2>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="d-flex">
+        <div class="btn-group">
+            <button (click)="loadUserLikes('liked')" mat-raised-button class="mx-2"> Members I liked</button>
+            <button (click)="loadUserLikes('likedBy')" mat-raised-button color="accent" > Members, who liked me</button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-2" *ngFor="let member of members" >
+            <app-member-card [member]="member"></app-member-card>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center" *ngIf="pagination">
+        <mat-paginator
+        [length]="pagination.totalItems"
+        [pageSize]="pagination.itemsPerPage"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="pageChanged($event)"
+    >
+
+    </mat-paginator>
+    </div>
+</div>

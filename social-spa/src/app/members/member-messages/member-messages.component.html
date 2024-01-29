@@ -1,1 +1,79 @@
-<p>member-messages works!</p>
+<div class="card">
+  <div
+    #scrollMe
+    style="overflow: scroll; height: 535px"
+    [scrollTop]="scrollMe.scrollHeight"
+    class="card-body"
+  >
+    <div *ngIf="messages?.length === 0">No Messages yet...</div>
+
+    <ul *ngIf="messages!.length > 0" class="chat">
+      <li *ngFor="let message of messages">
+        <div>
+          <span class="chat-img float-end">
+            <img
+              src="{{
+                message.senderPhotoUrl || ' ../../../assets/img/dummy.jpeg'
+              }}"
+              alt="image of user"
+              class="rounded-circle"
+            />
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <small class="text-muted d-flex">
+                <mat-icon>history</mat-icon>
+                <span> {{ message.messageSent + 'Z' | timeago }}</span>
+                <span
+                  *ngIf="
+                    !message.dateRead && message.senderUsername !== username
+                  "
+                  class="text-danger"
+                >
+                  (unread)
+                </span>
+                <span
+                  *ngIf="
+                    message.dateRead && message.senderUsername !== username
+                  "
+                  class="text-success"
+                >
+                  (read {{ message.dateRead + 'Z' | timeago }})
+                </span>
+              </small>
+            </div>
+            <p>
+              {{ message.content }}
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <form
+      class="d-flex"
+      #messageForm="ngForm"
+      (ngSubmit)="sendMessage()"
+      autocomplete="off"
+    >
+      <div class="input-group">
+        <input
+          type="text"
+          name="messageContent"
+          [(ngModel)]="messageContent"
+          required
+          class="form-control input-sm"
+        />
+      </div>
+      <div class="input-group-append">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!messageForm.valid || loading"
+        > Sent</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="container mt-3">
+    <div class="mb-4 d-flex">
+        <div class="btn-group">
+            <button (click)="loadMessages('Unread')" matTooltip="Unread Messages" mat-icon-button matToo>
+                <mat-icon  class="icon-display ">mark_email_unread</mat-icon>
+            </button>
+            <button (click)="loadMessages('Inbox')" matTooltip="Inbox" mat-icon-button matToo>
+                <mat-icon  class="icon-display ">move_to_inbox</mat-icon>
+            </button>
+            <button (click)="loadMessages('Outbox')" matTooltip="Outbox" mat-icon-button matToo>
+                <mat-icon  class="icon-display">outgoing_mail</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row" *ngIf="!messages || messages.length === 0">
+        <h3>No Messages</h3>
+    </div>
+    <div class="row" *ngIf="messages && messages.length > 0">
+    <div class="mat-elevation-z8">
+        <table [hidden]="loading" color mat-table  [dataSource]="dataSource"  >
+            <!-- Message Column -->
+            <ng-container matColumnDef="messages">
+                <th mat-header-cell *matHeaderCellDef>Messages  </th>
+                <td mat-cell *matCellDef="let element"> {{element.content}} </td>
+            </ng-container>
+
+              <!-- Form/To Column -->
+              <ng-container matColumnDef="fromTo">
+                <th mat-header-cell *matHeaderCellDef>From/To  </th>
+                <td mat-cell *matCellDef="let element"> 
+                <div *ngIf="container === 'Outbox'">
+                    <img src="{{element.recipientPhotoUrl}}" alt="" 
+                    class="img-circle rounded-circle me-2">
+                    <strong>{{element.recipientUsername | titlecase}}</strong>
+                </div>
+                <div *ngIf="container !== 'Outbox'">
+                    <img src="{{element.senderPhotoUrl}}" alt="" 
+                    class="img-circle rounded-circle me-2">
+                    <strong>{{element.senderUsername | titlecase}}</strong>
+                </div>
+                </td>
+            </ng-container>
+
+             <!-- Message TimeStamp -->
+             <ng-container matColumnDef="sentReceived">
+                <th mat-header-cell *matHeaderCellDef>Sent/Received  </th>
+                <td mat-cell *matCellDef="let element"> {{element.messageSent + 'Z' | timeago}} </td>
+            </ng-container>
+
+            <!-- Action-->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element"> 
+                <button (click)="deleteMessage(element.id)" (click)="$event.stopPropagation()" mat-raised-button color="warn">
+                    Delete
+                </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigate(row, $event)"></tr>
+        </table>
+        <ng-container *ngIf="pagination"  >
+
+        
+                <mat-paginator
+
+                    [length]="pagination.totalItems"
+                    [pageSize]="pagination.itemsPerPage"
+                    [pageSizeOptions]="[5, 10, 25]"
+                    (page)="pageChanged($event)"
+                >
+    
+                </mat-paginator>
+      
+        </ng-container>
+    </div>
+    </div>
+</div>

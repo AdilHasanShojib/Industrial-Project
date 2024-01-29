@@ -1,0 +1,28 @@
+.example-btn {
+  width: 100%;
+  }
+
+  .img-thumbnail {
+    margin: 25px;
+    width: 85%;
+    height: 85%;
+    background-color: black;
+  }
+  .card {
+    background-color: black;
+    height: 700px;
+  }
+  .card-body {
+    padding: 0 25px;
+    background-color: black;
+    color: white;
+  }
+  .card-footer {
+    padding: 10px 15px;
+    background-color: black;
+    border-top: none;
+  }
+  .example-stretched-tabs ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color: black !important;
+    padding: 10px;
+  }

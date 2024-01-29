@@ -1,69 +1,76 @@
 <mat-toolbar>
-    <div class="container"> 
-        <div class="menu-container"> 
-            <div class="right-nav-item"> 
-              <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">My App</a>
-              <ng-container *ngIf="authService.currentUser$ | async">  <ul class="right-nav-item_ul">
-                <li>
-                    <a routerLink="/members" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Matches</a>
-                </li>
-                <li>
-                  <a routerLink="/lists" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Like Lists</a>
-              </li>
-              <li>
-                  <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Message</a>
-              </li>
-
-              <li>
-                  <a routerLink="/admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Admin</a>
-              </li>
-
-              <li>
-                <a routerLink="/test-error" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Test Error</a>
-              </li>
-
-
-              </ul> </ng-container>
-            
+    <div class="container">
+        <div class="menu-container">
+            <div class="right-nav-item">
+                <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    My  App
+                </a>
+                <ng-container *ngIf="authService.currentUser$ | async" >
+                    <ul class="right-nav-item_ul">
+                        <li>
+                           <a 
+                           routerLink="/members" 
+                           routerLinkActive="active-link"
+                           [routerLinkActiveOptions]="{exact: true}"
+                           >Matches</a> 
+                        </li>
+                        <li>
+                            <a 
+                            routerLink="/like-lists" 
+                            routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            >Like Lists</a> 
+                         </li>
+                         <li>
+                            <a 
+                            routerLink="/message-panel" 
+                            routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            >Messages</a> 
+                         </li>
+                         <li *appHasRoles="['Admin', 'Moderator']">
+                            <a 
+                            routerLink="/admin" 
+                            routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            >Admin</a> 
+                         </li>
+                         <li>
+                            <a 
+                            routerLink="/test-error" 
+                            routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            >Test Error</a> 
+                         </li>
+                    </ul>
+                </ng-container>
+             
             </div>
-            <div class="left-nav-item"> 
-                <ng-container *ngIf="!(authService.currentUser$ | async)" ><a mat-button routerLink="/login" >
-                    <mat-icon class="material-symbols-outlined">login</mat-icon>
-                        
-                </a> </ng-container>
-                
-                 <ng-container *ngIf="authService.currentUser$ | async" >
+            <div class="left-nav-item">
+                <ng-container *ngIf="!(authService.currentUser$ | async)" >
+                    <a mat-button  routerLink="/login" >
+                        <mat-icon class="material-symbols-outlined">login</mat-icon>
+                     </a>
+                </ng-container>
+           
+                <ng-container *ngIf="authService.currentUser$ | async as user" >
                     <a mat-button [matMenuTriggerFor]="menu">
                         <mat-icon class="material-symbols-outlined">person</mat-icon>
-                            
-                    </a> 
-                    
-                      <mat-menu #menu="matMenu" class="custom-met-menu" yPosition="below">
-                     <a mat-menu-item>Hello Users <img src="../../../assets/img/madara.jpg"> </a>
-                     <a (click)="onLogOut()"  mat-menu-item>LogOut</a>
-                     </mat-menu>
+                     </a>
+                    <mat-menu #menu="matMenu" class="custom-mat-menu" yPosition="below" >
+                    <a mat-menu-item routerLink="member/edit">
+                    Hello {{user.knownAs}}
+                    <img src="{{user.photoUrl ||' ../../../assets/img/dummy.jpeg'}}">    
+                    </a>
+                    <a (click)="onLogout()" mat-menu-item>
+                        Logout
+                    </a>
+                    </mat-menu>
+                </ng-container>
+             
 
-                 </ng-container>
-                
-                <!-- <ul class="right-nav-item_ul">
-                  <li>
-                      <a routerLink="/members" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Matches</a>
-                  </li>
-                  <li>
-                    <a routerLink="/lists" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Like Lists</a>
-                </li>
-                <li>
-                    <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Message</a>
-                </li>
-
-                <li>
-                    <a routerLink="/admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Admin</a>
-                </li>
-
-
-                </ul> -->
             </div>
         </div>
     </div>
-     
-  </mat-toolbar>
+   
+</mat-toolbar>

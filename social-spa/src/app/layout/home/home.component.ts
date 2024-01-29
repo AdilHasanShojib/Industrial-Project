@@ -8,9 +8,6 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class HomeComponent {
 
-  constructor(public authservice:AuthService){
-
-  }
-
+  constructor(public authService: AuthService){}
 
 }

@@ -1,1 +1,102 @@
-<p>member-details works!</p>
+<!-- <p *ngIf="member">
+
+    {{member.userName}}
+</p> -->
+
+<div *ngIf="member" class="container mt-5">
+  <div class="row">
+    <div class="col-4">
+
+        <div class="card">
+            <img
+            src="{{ member.photoUrl || './assets/img/dummy.jpeg' }}"
+            alt="{{ member.userName }}"
+            class="card-img-top img-thumbnail"
+          />
+          <div class="card-body">
+            <div class="mb-2">
+                <strong class="text-success">Online Now</strong>
+            </div>
+            <div >
+                <strong >Location:</strong>
+                <p> {{member.city}} {{member.country}}</p>
+            </div>
+            <div>
+                <strong >Age:</strong>
+                <p> {{member.age}} </p>
+            </div>
+            <div >
+                <strong >Last active:</strong>
+                <p> {{member.lastActive}} </p>
+            </div>
+            <div >
+                <strong >Member Since:</strong>
+                <p> {{member.created | date:"dd MMM yyyy"}} </p>
+            </div>
+
+          </div>
+          <div class="card-footer">
+            <div class="example-btn">
+                 <button mat-raised-button color="primary">
+                    Like
+                 </button>
+                 <button mat-raised-button color="accent" (click)="goMessage('Messages')" >
+                    Message
+                 </button>
+            </div>
+          </div>
+
+        </div>
+
+    
+    </div>
+    <div class="col-8">
+        <mat-tab-group 
+        #myMessageTab
+        (selectedTabChange)="onTabChange($event)"
+        class="example-stretched-tabs mat-elevation-z4"
+        >
+            <mat-tab label="About {{member.knownAs}}"> 
+                <div class="m-3">
+                    <h4>
+                        Description
+                    </h4>
+                    <p>
+                        {{member.introduction}}
+                      
+                    </p>
+                    <h4>
+                        Looking For
+                    </h4>
+                    <p>
+                        {{member.lookingFor}}
+                        All
+                    </p>
+                </div>
+            </mat-tab>
+            <mat-tab label="Interests"> 
+                <div class="m-3">
+                    <h4>
+                        Interests
+                    </h4>
+                    <p>
+                        {{member.interests}}
+            
+                    </p>
+                </div>
+            </mat-tab>
+            <mat-tab  label="Photos" > 
+                <div  class="m-3">
+                    <gallery *ngIf="myMessageTab.selectedIndex === 2"  class="ngx-gallery" [items]="imageGallary"></gallery>
+                </div>
+            </mat-tab>
+            <mat-tab label="Messages"> 
+                <div class="m-3">
+                    <!-- Message Components -->
+                    <app-member-messages [username]="member.userName" [messages]="messages"></app-member-messages>
+                </div>
+            </mat-tab>
+          </mat-tab-group>
+    </div>
+  </div>
+</div>

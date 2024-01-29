@@ -1,2 +1,2 @@
-<app-logged-out-main *ngIf="!(authservice.currentUser$ | async)" ></app-logged-out-main>
-<app-logged-in-main *ngIf="authservice.currentUser$ | async" ></app-logged-in-main>
+<app-logged-out-main *ngIf="!(authService.currentUser$ | async)"></app-logged-out-main>
+<app-logged-in-main *ngIf="authService.currentUser$ | async"></app-logged-in-main>

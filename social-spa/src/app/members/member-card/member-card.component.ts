@@ -10,18 +10,14 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberCardComponent {
   isOnline = true;
-  @Input() member:Members | undefined;
-  constructor(private memberService:MembersService,private toastrService:ToastrService){
 
+  @Input() member: Members | undefined;
 
-  }
+  constructor(private memberService: MembersService, private toastrService: ToastrService){}
 
-  addUserLike(member:Members){
-    this.memberService.addLike(member.Name).subscribe({
-    next:()=> this.toastrService.success('You Have liked'+ member.knownAs)
+  addUserLike(member: Members){
+    this.memberService.addLike(member.userName).subscribe({
+      next: () => this.toastrService.success('You have liked' + member.knownAs)
     });
   }
-
-
-
 }

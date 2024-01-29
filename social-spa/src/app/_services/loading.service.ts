@@ -5,30 +5,24 @@ import { NgxSpinnerService } from 'ngx-spinner';
   providedIn: 'root'
 })
 export class LoadingService {
-  loadingReqCount=0;
-
+  loadingRequestCound = 0; 
   constructor(private spinerService: NgxSpinnerService) { }
 
   showSpinner(){
-  this.loadingReqCount++;
-  this.spinerService.show(undefined,{
-    type: 'pacman',
-    bdColor: 'rgba(0, 0, 0, 0.8)',
-    size: 'large',
-    color: '#fff',
-  })
-
+    this.loadingRequestCound++;
+    this.spinerService.show(undefined, {
+      type: 'pacman',
+      bdColor: 'rgba(0, 0, 0, 0.8)',
+      color : "#fff",
+      size : "large"
+    })
   }
 
-hideSpinner(){
-
-  this.loadingReqCount--;
-  if(this.loadingReqCount <=0){
-    this.loadingReqCount=0;
-    this.spinerService.hide();
+  hideSpinner(){
+    this.loadingRequestCound--;
+    if(this.loadingRequestCound <=0) {
+      this.loadingRequestCound = 0;
+      this.spinerService.hide();
+    }
   }
-
-
-}
-
 }

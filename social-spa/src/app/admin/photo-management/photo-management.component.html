@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row" *ngIf="photos">
+    <div class="col-sm-2" *ngFor="let photo of photos">
+      <h4 class="text-center">
+        {{ photo.username }}
+      </h4>
+      <img
+        src="{{ photo.url }}"
+        alt="{{ photo.username | titlecase }}"
+        class="img-thumbnail p-1"
+      />
+      <div class="text-center mb-2">
+        <button
+          [disabled]="photo.isApproved"
+          (click)="approvePhoto(photo.id, photo.userId)"
+          class="btn btn-sm btn-success me-1"
+        >
+          Approve
+        </button>
+        <button
+          [disabled]="photo.isRejected"
+          (click)="rejectPhoto(photo.id)"
+          class="btn btn-sm btn-danger"
+        >
+          Reject
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center" *ngIf="pagination">
+    <mat-paginator
+      [length]="pagination.totalItems"
+      [pageSize]="pagination.itemsPerPage"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="pageChanged($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

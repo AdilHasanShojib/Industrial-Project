@@ -1,0 +1,43 @@
+.example-button {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+
+.img-wrapper {
+    position: relative ;
+}
+
+.my-drop-zone {
+    display: flex;
+    align-items: center;
+  }
+
+  .nv-file-over  {
+    border: dotted 3px red;
+  }
+
+  input[type=file] {
+    color: transparent;
+  }
+
+  ::ng-deep .mat-mdc-raised-button[disabled][disabled] {
+    --mdc-protected-button-disabled-label-text-color: gray;
+      --mdc-protected-button-container-color: gray;
+      --mdc-protected-button-label-text-color: gray;
+      --mdc-protected-button-container-elevation: gray;
+  }
+  .not-approved {
+    opacity: 0.2;
+   }
+
+   .img-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 30%;
+   }
+  
